@@ -16,7 +16,7 @@ public class Step_mapping {
 	
 	
 	@Given ("Acessada a pagina da Webmotors")
-	   public void webmotorshomePage_open() {
+	   public void webmotors_homePage_open() {
 	   	System.setProperty("webdriver.firefox.driver", "/usr/local/bin/geckodriver");
 			driver = new FirefoxDriver();
 		    driver.get("https://www.webmotors.com.br/");
@@ -48,11 +48,17 @@ public class Step_mapping {
 		ResultadoDaBuscaPage resultadoDaBuscaPage = new ResultadoDaBuscaPage(driver);
 		resultadoDaBuscaPage.marcaModeloNameText_assertion(driver);
 		resultadoDaBuscaPage.versaoNameText_assertion(driver);
+		driver.close();
 	}
-//	Given Acessada a pagina da Webmotors
-//	And E clicado no botao para acessar a pagina de resultados de busca
-//	When Ao selecionar no filtro a marca Honda
-//	And o modelo City e uma das versoes
-//	Then O site retorna um Honda City da versao selecionada
 	
+	// Passos exclusivo para o segundo cenario
+
+	@Given ("Acessada a pagina da loja na Webmotors")
+	   public void lojaNaWebmotors_homePage_open() {
+			driver = new FirefoxDriver();
+		    driver.get("https://www.webmotors.com.br/carros/estoque/?IdRevendedor=3834764&TipoVeiculo=carros&anunciante=concession%C3%A1ria%7Cloja");
+		    driver.manage().window().maximize();
+		    driver.manage().deleteAllCookies();
+	   }
+
 }
